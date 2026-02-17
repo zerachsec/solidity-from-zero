@@ -9,7 +9,11 @@ contract Y {
     uint256 public constant y = 24;
 }
 
-contract MultiInheritance {
+contract MultiInheritance is X, Y {
+    function getValues() public pure returns (uint256, uint256) {
+        return (x, y);
+    }
+
     /**
      * The goal of this exercise is to use the functionality of contracts X and Y without pasting their code here or making an external call or delegate call
      */
