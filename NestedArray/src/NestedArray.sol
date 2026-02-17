@@ -20,8 +20,7 @@ contract NestedArray {
             for (uint256 j = 0; j < arr[i].length; j++) {
                 nestedSum += arr[i][j];
             }
-            // return totalSum;
+            totalSum += nestedSum;
         }
         return totalSum;
-    }
 }
