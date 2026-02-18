@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 /*
     Run the following command to install the oz contracts:
-    forge install OpenZeppelin/openzeppelin-contracts --no-commit 
+    forge install OpenZeppelin/openzeppelin-contracts --no-commit
 */
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -27,6 +27,7 @@ contract SkillsCoin is ERC20 {
     // Mint to the caller
     function mint(uint256 amount) public {
         // your code here
+        _mint(msg.sender, amount);
     }
 }
 
@@ -44,5 +45,10 @@ contract RareCoin is ERC20 {
         // this will fail if there is insufficient approval or balance
         // require(ok, "call failed");
         // more code
+        // you can also use the SkillsCoin interface to call transferFrom directly without using low level call
+        // this will also fail if there is insufficient approval or balance
+        skillsCoin.transferFrom(msg.sender, address(this), amount);
+        // mint the same amount of RareCoin to the caller
+        _mint(msg.sender, amount);
     }
 }
