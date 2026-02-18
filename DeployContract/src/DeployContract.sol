@@ -10,8 +10,17 @@ contract Deployer {
 
     function deployContract() public returns (address) {
         // your code here
+        DeployMe deployMe = new DeployMe();
+        return address(deployMe);
     }
 }
 
-contract DeployMe {}
+contract DeployMe {
+    /*
+        This is the contract you need to deploy in the `deployContract` function of `Deployer` contract.
+    */
 
+    function getMessage() external pure returns (string memory) {
+        return "Hello, I'm deployed!";
+    }
+}
